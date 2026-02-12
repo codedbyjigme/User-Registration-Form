@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
+const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
 function App() {
+  console.log("API BASE =", API_BASE);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
-  const API_BASE = process.env.REACT_APP_API_BASE_URL;
-
+ 
 
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
