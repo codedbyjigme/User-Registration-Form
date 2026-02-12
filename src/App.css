@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #eaf6ff, #d6ecff);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card {
+  width: 220px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px;
+  box-sizing: border-box;
+  box-shadow:
+    0 8px 20px rgba(127, 179, 232, 0.25),
+    0 2px 6px rgba(127, 179, 232, 0.15);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 16px 35px rgba(127, 179, 232, 0.35),
+    0 6px 12px rgba(127, 179, 232, 0.25);
+}
+
+.card h2 {
+  margin: 2px 0 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a7ebb;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input {
+  padding: 6px 7px;
+  font-size: 11px;
+  border-radius: 10px;
+  border: 1px solid #d8e9f8;
+  background: #f9fcff;
+  color: #355d8a;
+}
+
+input::placeholder {
+  color: #9abfe4;
+}
+
+input:focus {
+  outline: none;
+  border-color: #7fb3e8;
+  background: #ffffff;
+}
+
+button {
+  width: 100%;
+  padding: 6px;
+  font-size: 11px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-btn {
+  background: #7fb3e8;
+  color: white;
+}
+
+.register-btn:hover {
+  background: #6aa6de;
+}
+
+.show-btn {
+  margin-top: 6px;
+  background: #eef6ff;
+  color: #4a7ebb;
+}
+
+.show-btn:hover {
+  background: #e1f0ff;
+}
+
+.users-card {
+  animation: fadeIn 0.3s ease;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  color: #355d8a;
+}
+
+.users-table thead {
+  background: #eef6ff;
+}
+
+.users-table th,
+.users-table td {
+  padding: 6px;
+  text-align: left;
+}
+
+.users-table th {
+  font-weight: 600;
+  color: #4a7ebb;
+}
+
+.users-table tbody tr:nth-child(even) {
+  background: #f7fbff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
