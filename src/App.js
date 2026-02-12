@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-// HARD-CODED for now (correct approach for debugging)
-const API_BASE =
-  "http://user-registration-jigme-env.eba-hkyeza2p.ap-southeast-2.elasticbeanstalk.com";
+const API_BASE ="https://main.dxpm51f6sq70d.amplifyapp.com/";
 
 function App() {
   console.log("API BASE =", API_BASE);
