@@ -3,7 +3,7 @@ import "./App.css";
 
 // HARD-CODED for now (correct approach for debugging)
 const API_BASE =
-  "https://user-registration-jigme-env.eba-hkyeza2p.ap-southeast-2.elasticbeanstalk.com";
+  "http://user-registration-jigme-env.eba-hkyeza2p.ap-southeast-2.elasticbeanstalk.com";
 
 function App() {
   console.log("API BASE =", API_BASE);
