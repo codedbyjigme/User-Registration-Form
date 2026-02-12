@@ -8,6 +8,8 @@ function App() {
     password: "",
     confirmPassword: ""
   });
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
 
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
@@ -24,7 +26,7 @@ function App() {
       return;
     }
 
-    await fetch("http://localhost:8080/api/users/register", {
+    await fetch(`${API_BASE}/api/users/register`,{
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,7 +52,7 @@ function App() {
       return;
     }
 
-    const res = await fetch("http://localhost:8080/api/users");
+    const res = await fetch(`${API_BASE}/api/users`);
     const data = await res.json();
     setUsers(data);
     setShowUsers(true);
