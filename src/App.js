@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-const API_BASE ="https://main.dxpm51f6sq70d.amplifyapp.com/";
+const API_BASE ="https://main.dxpm51f6sq70d.amplifyapp.com";
 
 function App() {
   console.log("API BASE =", API_BASE);
