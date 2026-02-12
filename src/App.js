@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import "./App.css";
-const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
+// HARD-CODED for now (correct approach for debugging)
+const API_BASE =
+  "https://user-registration-jigme-env.eba-hkyeza2p.ap-southeast-2.elasticbeanstalk.com";
 
 function App() {
   console.log("API BASE =", API_BASE);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
- 
 
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
@@ -27,36 +30,58 @@ function App() {
       return;
     }
 
-    await fetch(`${API_BASE}/api/users/register`,{
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password
-      })
-    });
+    try {
+      const res = await fetch(`${API_BASE}/api/users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
+      });
 
-    alert("User registered successfully");
+      if (!res.ok) {
+        throw new Error("Registration failed");
+      }
 
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
+      alert("User registered successfully");
+
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Backend error while registering user");
+    }
   };
 
   const toggleUsers = async () => {
-    if (showUsers) {
-      setShowUsers(false);
-      return;
-    }
+    try {
+      if (showUsers) {
+        setShowUsers(false);
+        return;
+      }
 
-    const res = await fetch(`${API_BASE}/api/users`);
-    const data = await res.json();
-    setUsers(data);
-    setShowUsers(true);
+      console.log("Fetching users...");
+      const res = await fetch(`${API_BASE}/api/users`);
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch users");
+      }
+
+      const data = await res.json();
+      console.log("Users:", data);
+
+      setUsers(data);
+      setShowUsers(true);
+    } catch (err) {
+      console.error(err);
+      alert("Backend error while fetching users");
+    }
   };
 
   return (
@@ -102,7 +127,11 @@ function App() {
             </button>
           </form>
 
-          <button className="show-btn" onClick={toggleUsers}>
+          <button
+            className="show-btn"
+            type="button"
+            onClick={toggleUsers}
+          >
             {showUsers ? "Hide Registered Users" : "Show Registered Users"}
           </button>
         </div>
@@ -120,7 +149,7 @@ function App() {
               </thead>
               <tbody>
                 {users.map((u) => (
-                  <tr key={u.id}>
+                  <tr key={u._id}>
                     <td>{u.name}</td>
                     <td>{u.email}</td>
                   </tr>
